@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sandy's Project</title>	
+	
+	<link rel="shortcut icon" href="css/img/favicon.ico" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/free-jqgrid.min.css">
+	<link rel="stylesheet" type="text/css" href="css/ui.jqgrid-bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+	
+	<script src="js/jquery-3.1.1.min.js"></script>
+	<script src="js/jquery.ui.min.js"></script>
+	<script src="js/popper.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/free-jqgrid.min.js"></script>
+	<script src="js/chart.js"></script>
+	<script src="js/action.js"></script>
+	<script src="js/control/index.js"></script>
+	
+  </head>
+  <body>
+	  
+	<div class="container" style="margin-top:10px">
+		<ul class="nav justify-content-center">
+			<li class="nav-item">
+				<a class="nav-link" href="#" Onclick="switchHtml('login.html')">統計分析系統</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#" Onclick="switchHtml('skill-tree.html')">技能樹</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#" Onclick="switchHtml('rootForm.html')">動態表單</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="http://59.127.69.58:8888/twdrg40/Login.html"  target="_blank" >TwDrg電子書</a>
+			</li>
+			<li class="nav-item">
+				<button class="btn btn-primary" data-toggle="modal" data-target="#contactModal" data-whatever="Sandy">聯絡我</button>
+			</li>
+		</ul>
+	
+		
+		<hr/>
+		
+		<div id="root">
+			
+		</div>
+		
+	
+		<div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+			<div class="modal-content">
+			  <div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">New message</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				  <span aria-hidden="true">&times;</span>
+				</button>
+			  </div>
+			  <div class="modal-body">
+				<form>
+				  <div class="form-group">
+					<label for="contact_email" class="col-form-label">E-mail:</label>
+					<input type="text" class="form-control" id="contact_email">
+				  </div>
+				  <div class="form-group">
+					<label for="contact_company" class="col-form-label">暱稱:</label>
+					<input type="text" class="form-control" id="contact_company">
+				  </div>
+				  <div class="form-group">
+					<label for="contact_info" class="col-form-label">Message:</label>
+					<textarea class="form-control" id="contact_info"></textarea>
+				  </div>
+				</form>
+				<span id="contact_msg"></span>
+			  </div>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+				<button type="button" class="btn btn-primary" id="btn_contact">送出</button>
+			  </div>
+			</div>
+		  </div>
+		</div>
+		
+	</div>	
+  </body>
+  <script>
+	$('#contactModal').on('show.bs.modal', function (event) {
+	  var button = $(event.relatedTarget) // Button that triggered the modal
+	  var recipient = button.data('whatever') // Extract info from data-* attributes
+	  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+	  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+	  var modal = $(this)
+	  modal.find('.modal-title').text('New message to ' + recipient)
+	});
+  
+  </script>
+</html>

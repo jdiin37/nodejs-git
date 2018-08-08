@@ -1,0 +1,266 @@
+<style>
+		
+	#top_zone{
+		border:1px solid rgba(136,136,136,.4);
+		border-radius:4px;
+		margin:8px 0px;
+	}
+	
+	#dataInfo_zone{
+		
+		padding:8px;
+	}
+	
+	#dataContent_zone{
+		padding:8px;
+	}
+	
+	#menu-box {
+		width:360px;
+	}
+	
+	#brand_bar {
+		border-bottom:1px solid rgba(136,136,136,.4);
+	}
+	
+	#brand_bar > div{
+		flex:auto;
+		margin:8px;
+	}
+	
+	#brand_bar > .logo{
+		flex:none;
+		width:40px;
+		cursor:pointer;
+	}
+	
+	#brand_bar > .menu{
+		flex:none;
+		width:32px;
+		cursor:pointer;
+	}
+	
+	#brand_bar > .logout{
+		flex:none;
+		width:32px;
+		cursor:pointer;
+	}
+		
+	#tool_bar2{
+		/* background-color:#C7EDFF; */
+	}
+	
+	#tool_bar2 > div{
+		flex:none;		
+	}
+	
+	
+	.dropdown-menu > li {
+		margin:4px;
+	}
+	
+	.dropdown-menu > li:hover{
+		background-color:rgba(136,136,136,.1);
+	}
+	
+</style>
+
+
+<div class="container">
+	<div id="top_zone">
+		<div id="brand_bar" class="flex-container">	
+			
+			<div class="menu">
+				<div id="dropBox1" class="dropdown">
+					<div class="dropdown-toggle btn_2" data-toggle="dropdown">
+						<span class="fa fa-th fa-lg"></span>	
+					</div>
+					
+					<ul class="dropdown-menu">
+						<!-- <li><span>csv匯入</span></li>
+						<li><span>json匯入</span></li>
+						<li><span>xml匯入</span></li>
+						<li class="divider"></li>
+						<li><span>匯出</span></li> -->
+						<div id="menu-box" class="flex-container-wrap">
+							<div class="btn_0" id="open_csv"><span class="fa fa-folder-open-o fa-3x"></span><br/>CSV</div>
+							<div class="btn_0 disabledDiv" ><span class="fa fa-folder-open-o fa-3x"></span><br/>JSON</div>
+							<div class="btn_0 disabledDiv" ><span class="fa fa-folder-open-o fa-3x"></span><br/>XML</div>
+							<div class="btn_0 disabledDiv" ><span class="fa fa-download fa-3x" ></span><br/>CSV</div>
+							<div class="btn_0 disabledDiv" ><span class="fa fa-download fa-3x" ></span><br/>JSON</div>
+							<div class="btn_0 disabledDiv" ><span class="fa fa-download fa-3x" ></span><br/>XML</div>
+							<div class="btn_0" id="close_file" ><span class="fa fa-refresh fa-3x" ></span><br/>關閉檔案</div>
+						</div>
+					</ul>
+				</div>
+			</div>	
+			<input type="file" class="file-dialog" id="fileInput_csv" style="display:none;" accept='.csv,text/plain' onchange="openFileCSV(event);">
+			
+			<div>
+			</div>
+			
+			<div class="logo">
+				<span class="" id="btn_logo"><span class="fa fa-university"></span></span>
+			</div>
+			
+			
+			<div>
+			</div>
+			
+			<div class="logout">			
+				<span class="" id="btn_logout"><span class="fa fa-sign-out fa-lg"></span></span>
+			</div>
+		</div>
+		
+		<!-- <div id="tool_bar1" class="flex-container">
+			
+		</div> -->
+		
+		<div id="tool_bar2" class="flex-container">		
+			<div class="btn_1"><span class="fa fa-question fa-3x"></span><br/>關聯法則</div>
+			<div class="btn_1"><span class="fa fa-question fa-3x"></span><br/>分群</div>
+			<div class="btn_1"><span class="fa fa-question fa-3x"></span><br/>分類</div>
+			<div class="btn_1" data-toggle="modal" data-target="#Modal_baseData"><span class="fa fa-question fa-3x"></span><br/>基本資料分析</div>
+			<div class="btn_1" data-toggle="modal" data-target="#Modal_chart"><span class="fa fa-line-chart fa-3x"></span><br/>曲線圖</div>
+			
+		</div>
+	</div>
+	<nav>
+		<div class="nav nav-tabs" id="nav-tab" role="tablist">
+			<a class="nav-item nav-link active" id="nav-base-tab" data-toggle="tab" href="#nav-base" role="tab" aria-controls="nav-base" aria-selected="true">基本資料</a>
+			<a class="nav-item nav-link" id="nav-chart-tab" data-toggle="tab" href="#nav-chart" role="tab" aria-controls="nav-chart" aria-selected="false">曲線圖</a>
+		</div>
+	</nav>
+	<div class="tab-content" id="nav-tabContent">
+		<div class="tab-pane fade show active" id="nav-base" role="tabpanel" aria-labelledby="nav-base-tab">
+			<div id="dataInfo_zone" class="flex-container">
+				<div class="label_0">檔案名稱:<span id="file_name"></span></div>
+				<div class="label_0">檔案大小:<span id="file_size"></span></div>
+			</div>
+			<div id="dataContent_zone" class="flex-container pre-scrollable" style="display:none;max-height:500px;">		
+				<!-- <table id="myGrid"></table>
+				<div id="myExcel"></div>
+				<div class="label_0"><span id="file_content"></span></div> -->
+			</div>
+		</div>
+		<div class="tab-pane fade" id="nav-chart" role="tabpanel" aria-labelledby="nav-chart-tab">
+			<canvas id="myChart" width="400" height="400"></canvas>
+		</div>
+	</div>
+	
+		
+	<!-- <div>
+		<canvas id="myChart" width="400" height="400"></canvas>
+	</div> -->
+	
+	<!-- The Modal 基本資料分析 -->
+	<div class="modal" id="Modal_baseData">
+		<div class="modal-dialog">
+			<div class="modal-content">
+
+				<!-- Modal Header -->
+				<div class="modal-header">
+				  <h4 class="modal-title">基本資料分析</h4>
+				  <button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<script>
+					$( function() {
+						$( ".column_unselect, .column_select" ).sortable({
+						  connectWith: ".connectedSortable"
+						}).disableSelection();
+					} );
+				</script>
+				<!-- Modal body -->
+				<div class="modal-body">
+					<div class="flex-container-auto">
+						<div>
+							<h6>所有欄位</h6>
+							<div class="connectedSortable column_unselect pre-scrollable">
+								<div>column1</div>
+								<div>column2</div>
+								<div>column3</div>
+							</div>
+						</div>
+						
+						<div>
+							<h6>選擇欄位</h6>	
+							<div class="connectedSortable column_select pre-scrollable">
+								<div>column1</div>
+								<div>column2</div>
+								<div>column3</div>
+							</div>
+						</div>	
+					</div>
+				</div>
+
+				<!-- Modal footer -->
+				<div class="modal-footer">
+				  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	
+	<!-- The Modal 曲線圖 -->
+	<div class="modal" id="Modal_chart">
+		<div class="modal-dialog">
+			<div class="modal-content">
+
+				<!-- Modal Header -->
+				<div class="modal-header">
+				  <h4 class="modal-title">曲線圖</h4>
+				  <button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<script>
+					$( function() {
+						$( ".column_unselect, .column_select" ).sortable({
+						  connectWith: ".connectedSortable"
+						}).disableSelection();
+					} );
+				</script>
+				<!-- Modal body -->
+				<div class="modal-body">
+					<div class="flex-container-auto">
+						<div>
+							<h6>所有欄位</h6>
+							<div class="connectedSortable column_unselect pre-scrollable">
+								<div>column1</div>
+								<div>column2</div>
+								<div>column3</div>
+							</div>
+						</div>
+						
+						<div>
+							<h6>x軸欄位</h6>	
+							<div class="connectedSortable column_select line-chart-x pre-scrollable">
+								<div>column1</div>
+								<div>column2</div>
+								<div>column3</div>
+							</div>
+							<h6>y軸欄位</h6>	
+							<div class="connectedSortable column_select line-chart-y pre-scrollable">
+								<div>column1</div>
+								<div>column2</div>
+								<div>column3</div>
+							</div>
+						</div>	
+					</div>
+				</div>
+
+				<!-- Modal footer -->
+				<div class="modal-footer">
+				  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	
+	
+	
+</div>	
+<script src="js/control/main.js"></script>
+
+
+	

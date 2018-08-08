@@ -1,0 +1,92 @@
+
+	
+	<style>
+			
+		.node{
+			border-style:solid;
+			border-width:2px 0px 0px 2px;
+			padding:4px 2px;
+			margin:4px 0px -4px 0px;
+		}
+		
+		.node > .node{
+			margin-left:40px;
+		}
+		
+		.toggle-icon{
+			cursor: pointer;
+			font-width:700;
+			padding:2px 4px 2px 4px;
+			font-weight: 800;
+			
+		}
+		.toggle-icon:hover{
+			color:gray;
+		}
+		
+		span[contentEditable=true]{
+			/*margin:4px;*/
+		    /*padding: 4px;*/
+/* 		    border: 1px solid #ccc; */
+/* 			box-shadow: inset 0 1px 3px #ddd; */
+/* 			border-radius: 4px; */
+		}
+		
+		span[contentEditable=true]:focus {
+    		/*outline-width: 0px;*/
+    		background-color:yellow;
+		}
+		
+		.tool_btn{
+/*  			background-color: #4CAF50;  */
+/* 		    border: none; */
+/* 		    color: white; */
+/* 		    padding: 15px 32px; */
+/* 		    text-align: center; */
+/* 		    text-decoration: none; */
+/* 		    display: inline-block; */
+/* 		    font-size: 16px; */
+ 		    margin: 10px 2px; 
+ 			border: 1px solid transparent; 
+/*  			box-shadow: inset 0 1px 3px #ddd; */
+			padding:2px;
+			font-size:14px;
+		    border-radius: 4px;
+		    cursor: pointer;
+		}
+		
+		.del-icon{
+			background-color:red;
+			color: white;
+		}
+
+		.add-icon{
+			background-color:#4CAF50;
+			color: white;
+		}		
+		
+		.ckb-icon{
+			background-color:green;
+			color: white;
+		}
+		
+		.addchild-icon{
+			background-color:orange;
+			color: white;
+		}
+	</style>
+
+	<script src="js/rootForm.js"></script>
+	<script src="js/rootFormFunc.js"></script>
+	<div class="container">
+		<div id="function-bar">
+			<button id="btn-newForm">新表單</button>
+			<button id="btn-sava">存檔</button>
+			<input type='file' accept='text/plain' onchange='openFile(event)'>
+		</div>
+		<hr/>
+		<div id="rootForm">
+		</div>
+		<div id="flatHtml">
+		</div>
+	</div>
